@@ -2,4 +2,4 @@ Create five folders in the current directory, namely 'all', 'file', 'class', 'me
 
 Run [split](/data_collection/map_remap.py#L144) to extract comments to this directory.
 
-the comment has the same `loc_idx` belongs to the same code snippet.
+Once the comments are extracted here, note that the comment has the same `loc_idx` belongs to the same code snippet.
