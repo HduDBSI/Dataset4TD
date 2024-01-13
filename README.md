@@ -1,5 +1,5 @@
 # Dataset
-The dataset is available in this [url](https://github.com/HduDBSI/Dataset4TD/releases/tag/dataset).
+Click [here](https://github.com/HduDBSI/Dataset4TD/releases/download/dataset/code.snippets-with-labels.metrics.7z) to download the dataset.
 
 # Automated Framework
 This framework is designed for TD annotation. To construct the dataset mentioned above, there are several steps as follows:
