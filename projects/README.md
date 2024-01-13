@@ -36,7 +36,7 @@ For ease of reading, we name **Quarkus-2.14.0.Final** as **Quarkus-2.14.0**, **E
 Download the source code of each project and then rename the compressed package to **Project-Version** (e.g., **antlr4-4.11.0**).
 
 Move these compressed packages to the **/projects** directory and unzip them to obtain the following file structure.
-- [projects](/)
+- [projects](/projects/)
   - [antlr4-4.11.0](/antlr4-4.11.0)
   - [dbeaver-22.2.5](/dbeaver-22.2.5)
   - [elasticsearch-8.5.2](/elasticsearch-8.5.2)
