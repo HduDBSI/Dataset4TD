@@ -1,0 +1,1 @@
+the comment has the same `loc_idx` belongs to the same code snippet.
