@@ -1,0 +1,13 @@
+conda create -n tf python=3.6
+conda activate tf
+pip install --upgrade pip
+pip install tensorflow
+pip install pandas nltk scipy scikit-learn
+
+mkdir /home/xyh/miniconda3/envs/tf/nltk_data
+mkdir /home/xyh/miniconda3/envs/tf/nltk_data/tokenizers
+mv punkt /home/xyh/miniconda3/envs/tf/nltk_data/tokenizers/punkt
+
+mkdir /home/xyh/miniconda3/envs/tf/nltk_data/corpora
+mv wordnet /home/xyh/miniconda3/envs/tf/nltk_data/corpora/wordnet
+mv omw-1.4 /home/xyh/miniconda3/envs/tf/nltk_data/corpora/omw-1.4
