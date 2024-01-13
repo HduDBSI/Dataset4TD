@@ -1,0 +1,111 @@
+D:\JDK\java-1.8.0-openjdk-1.8.0.322-2\bin\java.exe "-javaagent:D:\JetBrains\IntelliJ IDEA Community Edition 2021.3.2\lib\idea_rt.jar=60880:D:\JetBrains\IntelliJ IDEA Community Edition 2021.3.2\bin" -Dfile.encoding=UTF-8 -classpath D:\JDK\java-1.8.0-openjdk-1.8.0.322-2\jre\lib\charsets.jar;D:\JDK\java-1.8.0-openjdk-1.8.0.322-2\jre\lib\ext\access-bridge-64.jar;D:\JDK\java-1.8.0-openjdk-1.8.0.322-2\jre\lib\ext\cldrdata.jar;D:\JDK\java-1.8.0-openjdk-1.8.0.322-2\jre\lib\ext\dnsns.jar;D:\JDK\java-1.8.0-openjdk-1.8.0.322-2\jre\lib\ext\jaccess.jar;D:\JDK\java-1.8.0-openjdk-1.8.0.322-2\jre\lib\ext\localedata.jar;D:\JDK\java-1.8.0-openjdk-1.8.0.322-2\jre\lib\ext\nashorn.jar;D:\JDK\java-1.8.0-openjdk-1.8.0.322-2\jre\lib\ext\sunec.jar;D:\JDK\java-1.8.0-openjdk-1.8.0.322-2\jre\lib\ext\sunjce_provider.jar;D:\JDK\java-1.8.0-openjdk-1.8.0.322-2\jre\lib\ext\sunmscapi.jar;D:\JDK\java-1.8.0-openjdk-1.8.0.322-2\jre\lib\ext\sunpkcs11.jar;D:\JDK\java-1.8.0-openjdk-1.8.0.322-2\jre\lib\ext\zipfs.jar;D:\JDK\java-1.8.0-openjdk-1.8.0.322-2\jre\lib\jce.jar;D:\JDK\java-1.8.0-openjdk-1.8.0.322-2\jre\lib\jfr.jar;D:\JDK\java-1.8.0-openjdk-1.8.0.322-2\jre\lib\jsse.jar;D:\JDK\java-1.8.0-openjdk-1.8.0.322-2\jre\lib\management-agent.jar;D:\JDK\java-1.8.0-openjdk-1.8.0.322-2\jre\lib\resources.jar;D:\JDK\java-1.8.0-openjdk-1.8.0.322-2\jre\lib\rt.jar;E:\DownLoad\dataset\javaparser_extract\target\classes;C:\Users\Administrator\.m2\repository\com\github\javaparser\javaparser-core\3.24.7\javaparser-core-3.24.7.jar;C:\Users\Administrator\.m2\repository\commons-io\commons-io\2.4\commons-io-2.4.jar;C:\Users\Administrator\.m2\repository\com\opencsv\opencsv\5.6\opencsv-5.6.jar;C:\Users\Administrator\.m2\repository\org\apache\commons\commons-lang3\3.12.0\commons-lang3-3.12.0.jar;C:\Users\Administrator\.m2\repository\org\apache\commons\commons-text\1.9\commons-text-1.9.jar;C:\Users\Administrator\.m2\repository\commons-beanutils\commons-beanutils\1.9.4\commons-beanutils-1.9.4.jar;C:\Users\Administrator\.m2\repository\commons-logging\commons-logging\1.2\commons-logging-1.2.jar;C:\Users\Administrator\.m2\repository\commons-collections\commons-collections\3.2.2\commons-collections-3.2.2.jar;C:\Users\Administrator\.m2\repository\org\apache\commons\commons-collections4\4.4\commons-collections4-4.4.jar com.hdu.sample.Extractor
+normal:509, total:518, noContent:0, noComments:9, invalidClassName:0, invalidMethodName:0
+normal:429, total:585, noContent:0, noComments:156, invalidClassName:0, invalidMethodName:0
+normal:1284, total:3705, noContent:0, noComments:2421, invalidClassName:0, invalidMethodName:0
+normal:1122, total:11908, noContent:0, noComments:10786, invalidClassName:0, invalidMethodName:0
+antlr4-4.11.0 has been extracted.
+ 
+normal:4740, total:4742, noContent:0, noComments:2, invalidClassName:0, invalidMethodName:0
+normal:3999, total:5565, noContent:0, noComments:1566, invalidClassName:0, invalidMethodName:0
+normal:5577, total:36469, noContent:0, noComments:30892, invalidClassName:0, invalidMethodName:0
+normal:5045, total:73292, noContent:0, noComments:68247, invalidClassName:0, invalidMethodName:0
+dbeaver-22.2.5 has been extracted.
+ 
+normal:14194, total:14234, noContent:0, noComments:40, invalidClassName:0, invalidMethodName:0
+normal:10837, total:18995, noContent:0, noComments:8158, invalidClassName:0, invalidMethodName:0
+normal:27486, total:114135, noContent:0, noComments:86647, invalidClassName:0, invalidMethodName:2
+normal:22433, total:403576, noContent:0, noComments:381143, invalidClassName:0, invalidMethodName:0
+elasticsearch-8.5.2 has been extracted.
+ 
+normal:1493, total:1493, noContent:0, noComments:0, invalidClassName:0, invalidMethodName:0
+normal:2165, total:2355, noContent:0, noComments:190, invalidClassName:0, invalidMethodName:0
+normal:10605, total:18496, noContent:0, noComments:7891, invalidClassName:0, invalidMethodName:0
+normal:10901, total:65972, noContent:0, noComments:55071, invalidClassName:0, invalidMethodName:0
+exoplayer-2.18.2 has been extracted.
+ 
+normal:1057, total:3121, noContent:0, noComments:2064, invalidClassName:0, invalidMethodName:0
+normal:1119, total:5685, noContent:0, noComments:4566, invalidClassName:0, invalidMethodName:0
+normal:1289, total:20187, noContent:0, noComments:18844, invalidClassName:0, invalidMethodName:54
+normal:1327, total:49950, noContent:0, noComments:48418, invalidClassName:0, invalidMethodName:205
+fastjson-1.2.83 has been extracted.
+ 
+normal:13140, total:13198, noContent:0, noComments:58, invalidClassName:0, invalidMethodName:0
+normal:16502, total:20363, noContent:0, noComments:3861, invalidClassName:0, invalidMethodName:0
+normal:28154, total:100994, noContent:0, noComments:72840, invalidClassName:0, invalidMethodName:0
+normal:22073, total:284028, noContent:0, noComments:261955, invalidClassName:0, invalidMethodName:0
+flink-1.15.3 has been extracted.
+ 
+normal:3039, total:3039, noContent:0, noComments:0, invalidClassName:0, invalidMethodName:0
+normal:4627, total:6850, noContent:0, noComments:2223, invalidClassName:0, invalidMethodName:0
+normal:17037, total:49181, noContent:0, noComments:32144, invalidClassName:0, invalidMethodName:0
+normal:8295, total:131166, noContent:0, noComments:122871, invalidClassName:0, invalidMethodName:0
+guava-31.1 has been extracted.
+ 
+normal:1669, total:1716, noContent:0, noComments:47, invalidClassName:0, invalidMethodName:0
+normal:2175, total:3299, noContent:0, noComments:1124, invalidClassName:0, invalidMethodName:0
+normal:6705, total:15361, noContent:0, noComments:8656, invalidClassName:0, invalidMethodName:0
+normal:4355, total:46292, noContent:0, noComments:41937, invalidClassName:0, invalidMethodName:0
+jenkins-2.379 has been extracted.
+ 
+normal:2269, total:2317, noContent:0, noComments:48, invalidClassName:0, invalidMethodName:0
+normal:2228, total:3033, noContent:0, noComments:805, invalidClassName:0, invalidMethodName:0
+normal:7854, total:41115, noContent:0, noComments:33261, invalidClassName:0, invalidMethodName:0
+normal:2860, total:73596, noContent:0, noComments:70736, invalidClassName:0, invalidMethodName:0
+libgdx-1.11.0 has been extracted.
+ 
+normal:506, total:523, noContent:0, noComments:17, invalidClassName:0, invalidMethodName:0
+normal:446, total:681, noContent:0, noComments:235, invalidClassName:0, invalidMethodName:0
+normal:809, total:3575, noContent:0, noComments:2766, invalidClassName:0, invalidMethodName:0
+normal:566, total:9534, noContent:0, noComments:8968, invalidClassName:0, invalidMethodName:0
+logstash-8.5.2 has been extracted.
+ 
+normal:957, total:957, noContent:0, noComments:0, invalidClassName:0, invalidMethodName:0
+normal:660, total:1682, noContent:0, noComments:1022, invalidClassName:0, invalidMethodName:0
+normal:1633, total:5728, noContent:0, noComments:4095, invalidClassName:0, invalidMethodName:0
+normal:1816, total:13054, noContent:0, noComments:11238, invalidClassName:0, invalidMethodName:0
+mockito-4.9.0 has been extracted.
+ 
+normal:935, total:1031, noContent:0, noComments:96, invalidClassName:0, invalidMethodName:0
+normal:554, total:1207, noContent:0, noComments:653, invalidClassName:0, invalidMethodName:0
+normal:1328, total:5261, noContent:0, noComments:3933, invalidClassName:0, invalidMethodName:0
+normal:1081, total:16294, noContent:0, noComments:15213, invalidClassName:0, invalidMethodName:0
+openrefine-3.6.2 has been extracted.
+ 
+normal:7964, total:7964, noContent:0, noComments:0, invalidClassName:0, invalidMethodName:0
+normal:3676, total:10014, noContent:0, noComments:6338, invalidClassName:0, invalidMethodName:0
+normal:8423, total:67558, noContent:0, noComments:59135, invalidClassName:0, invalidMethodName:0
+normal:12188, total:187289, noContent:0, noComments:175101, invalidClassName:0, invalidMethodName:0
+presto-0.278 has been extracted.
+ 
+normal:5856, total:13052, noContent:0, noComments:7196, invalidClassName:0, invalidMethodName:0
+normal:6499, total:17114, noContent:0, noComments:10615, invalidClassName:0, invalidMethodName:0
+normal:11481, total:59449, noContent:0, noComments:47965, invalidClassName:0, invalidMethodName:3
+normal:8592, total:132744, noContent:0, noComments:124126, invalidClassName:0, invalidMethodName:26
+quarkus-2.14.0 has been extracted.
+ 
+normal:2533, total:2537, noContent:0, noComments:4, invalidClassName:0, invalidMethodName:0
+normal:1093, total:3492, noContent:0, noComments:2399, invalidClassName:0, invalidMethodName:0
+normal:3693, total:30736, noContent:0, noComments:27042, invalidClassName:0, invalidMethodName:1
+normal:4162, total:61911, noContent:0, noComments:57749, invalidClassName:0, invalidMethodName:0
+questdb-6.6 has been extracted.
+ 
+normal:1926, total:2151, noContent:0, noComments:225, invalidClassName:0, invalidMethodName:0
+normal:1895, total:2424, noContent:0, noComments:529, invalidClassName:0, invalidMethodName:0
+normal:4944, total:24849, noContent:0, noComments:19905, invalidClassName:0, invalidMethodName:0
+normal:589, total:59711, noContent:0, noComments:59122, invalidClassName:0, invalidMethodName:0
+redisson-3.18.1 has been extracted.
+ 
+normal:1882, total:1883, noContent:0, noComments:1, invalidClassName:0, invalidMethodName:0
+normal:1162, total:3008, noContent:0, noComments:1846, invalidClassName:0, invalidMethodName:0
+normal:3868, total:22116, noContent:0, noComments:18248, invalidClassName:0, invalidMethodName:0
+normal:2164, total:72073, noContent:0, noComments:69909, invalidClassName:0, invalidMethodName:0
+rxjava-3.1.5 has been extracted.
+ 
+normal:634, total:634, noContent:0, noComments:0, invalidClassName:0, invalidMethodName:0
+normal:738, total:853, noContent:0, noComments:115, invalidClassName:0, invalidMethodName:0
+normal:2043, total:5226, noContent:0, noComments:3183, invalidClassName:0, invalidMethodName:0
+normal:1769, total:20943, noContent:0, noComments:19174, invalidClassName:0, invalidMethodName:0
+tink-1.7.0 has been extracted.
+ 
+
+进程已结束,退出代码0
