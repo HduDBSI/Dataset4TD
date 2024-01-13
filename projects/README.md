@@ -53,7 +53,7 @@ Move these compressed packages to the **/projects** directory and unzip them to 
   - [quarkus-2.14.0](/projects/quarkus-2.14.0)
   - [questdb-6.6](/projects/questdb-6.6)
   - [redisson-3.18.1](/projects/redisson-3.18.1)
-  - [rxJava-3.1.5](/projects/rxjava-3.1.5)
+  - [rxjava-3.1.5](/projects/rxjava-3.1.5)
   - [tink-1.7.0](/projects/tink-1.7.0)
 
 
