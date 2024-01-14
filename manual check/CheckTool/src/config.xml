@@ -1,0 +1,11 @@
+<config>
+  <file_path>test.csv</file_path>
+  <encoding>utf-8-sig</encoding>
+  
+  <keyword1>TODO,FIXME,HACK,XXX,WORKAROUND,WORK AROUND</keyword1>
+  <keyword2>YUCK,UGLY,STUPID,SILLY,BROKEN,FIX,TEMPORARY</keyword2>
+  
+  <text_column>description</text_column>
+  <label_column>label</label_column>
+  
+</config>
