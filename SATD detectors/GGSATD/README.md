@@ -12,6 +12,7 @@ Note that, their available codes are same with the codes of [TextING](https://gi
 - Intel I9-10850K
 
 Download pre-trained word embeddings glove.6B.300d.txt from [here](http://nlp.stanford.edu/data/glove.6B.zip) and unzip it to [SATD detectors/GGSATD/cache/glove.6B.300d.txt](/SATD%20detectors/GGSATD/cache/glove.6B.300d.txt).
+
 ```
 conda create -n tf python=3.6
 conda activate tf
@@ -20,14 +21,15 @@ pip install tensorflow
 pip install pandas nltk scipy scikit-learn
 
 cd /Dataset4TD/SATD detectors/GGSATD
-mkdir /home/xyh/miniconda3/envs/tf/nltk_data
-mkdir /home/xyh/miniconda3/envs/tf/nltk_data/tokenizers
-mv punkt /home/xyh/miniconda3/envs/tf/nltk_data/tokenizers/punkt
+mkdir /home/username/miniconda3/envs/tf/nltk_data
+mkdir /home/username/miniconda3/envs/tf/nltk_data/tokenizers
+mv punkt /home/username/miniconda3/envs/tf/nltk_data/tokenizers/punkt
 
-mkdir /home/xyh/miniconda3/envs/tf/nltk_data/corpora
-mv wordnet /home/xyh/miniconda3/envs/tf/nltk_data/corpora/wordnet
-mv omw-1.4 /home/xyh/miniconda3/envs/tf/nltk_data/corpora/omw-1.4
+mkdir /home/username/miniconda3/envs/tf/nltk_data/corpora
+mv wordnet /home/username/miniconda3/envs/tf/nltk_data/corpora/wordnet
+mv omw-1.4 /home/username/miniconda3/envs/tf/nltk_data/corpora/omw-1.4
 ```
+Please make sure to replace "username" with your actual username.
 
 # Results Comparison
 Cross-project: nine projects as the training set and the remaining one as the testing set.
