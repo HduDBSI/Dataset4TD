@@ -40,8 +40,8 @@ The table below is the running results of our reproduced model.
 | **Average**    | 97.47%   | 60.94%    | 87.08% | 68.91%   |
 
 ## File Explanation
-[MAT.py](SATD%20detectors/MAT/MAT.py) makes the approach as a python class for easy calling. [*approach integration*]
+[MAT.py](/SATD%20detectors/MAT/MAT.py) makes the approach as a python class for easy calling. [*approach integration*]
 
-[cross_project.py](SATD%20detectors/MAT/cross_project.py) uses [MAT.py](SATD%20detectors/MAT/MAT.py) for cross project experiments. [*get all results at one time*] Note that MAT is an unsupervised approach, so there are no training set or testing set.
+[cross_project.py](/SATD%20detectors/MAT/cross_project.py) uses [MAT.py](SATD%20detectors/MAT/MAT.py) for cross project experiments. [*get all results at one time*] Note that MAT is an unsupervised approach, so there are no training set or testing set.
 
-[tag.py](SATD%20detectors/MAT/tag.py) obtains the labels for other 18 projects (ANTLR4, DBeaver, Elasticsearch, ExoPlayer, FastJSON, Flink, Guava, Jenkins, LibGDX, Logstash, Mockito, OpenRefine, Presto, Quarkus, QuestDB, Redisson, RxJava, Tink).
+[tag.py](/SATD%20detectors/MAT/tag.py) obtains the labels for other 18 projects (ANTLR4, DBeaver, Elasticsearch, ExoPlayer, FastJSON, Flink, Guava, Jenkins, LibGDX, Logstash, Mockito, OpenRefine, Presto, Quarkus, QuestDB, Redisson, RxJava, Tink).
