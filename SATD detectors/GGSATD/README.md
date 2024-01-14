@@ -10,7 +10,24 @@ Note that, their available codes are same with the codes of [TextING](https://gi
 - CuDNN 8.6.0
 - RTX 3060 12GB
 - Intel I9-10850K
-- Python packages requirements.txt 
+
+Download pre-trained word embeddings glove.6B.300d.txt from [here](http://nlp.stanford.edu/data/glove.6B.zip) and unzip it to [SATD detectors/GGSATD/cache/glove.6B.300d.txt](/SATD%20detectors/GGSATD/cache/glove.6B.300d.txt).
+```
+conda create -n tf python=3.6
+conda activate tf
+pip install --upgrade pip
+pip install tensorflow
+pip install pandas nltk scipy scikit-learn
+
+cd /Dataset4TD/SATD detectors/GGSATD
+mkdir /home/xyh/miniconda3/envs/tf/nltk_data
+mkdir /home/xyh/miniconda3/envs/tf/nltk_data/tokenizers
+mv punkt /home/xyh/miniconda3/envs/tf/nltk_data/tokenizers/punkt
+
+mkdir /home/xyh/miniconda3/envs/tf/nltk_data/corpora
+mv wordnet /home/xyh/miniconda3/envs/tf/nltk_data/corpora/wordnet
+mv omw-1.4 /home/xyh/miniconda3/envs/tf/nltk_data/corpora/omw-1.4
+```
 
 # Results Comparison
 Cross-project: nine projects as the training set and the remaining one as the testing set.
@@ -51,10 +68,10 @@ The table below is the running results of our reproduced model in cross-project 
 | **Average**| 97.04%   | 80.32%    | 62.23% | 68.93%   |
 
 ## File Explanation
-**train.py-Line 62** sets one project as testing set and the others as training set. [*easy to modify*]
+[train.py-Line 62](Dataset4TD/SATD%20detectors/GGSATD/train.py#Line62) sets one project as testing set and the others as training set. [*easy to modify*]
 
-**GGSATD.py** makes the approach as a python class for easy calling. [*approach integration*]
+[GGSATD.py](Dataset4TD/SATD%20detectors/GGSATD/GGSATD.py) makes the approach as a python class for easy calling. [*approach integration*]
 
-**cross_project.py** uses **GGSATD.py** for cross project experiments. [*get all results at one time*]
+[cross_project.py](Dataset4TD/SATD%20detectors/GGSATD/cross_project.py) uses [GGSATD.py](Dataset4TD/SATD%20detectors/GGSATD/GGSATD.py) for cross project experiments. [*get all results at one time*]
 
-**tag.py** exploits 10 projects (Apache Ant, ArgoUML, Columba, EMF, Hibernate ,JEdit ,JFreeChart ,JMeter ,JRuby ,SQuirrel) for model training, so as to obtain the labels for other 18 projects (ANTLR4, DBeaver, Elasticsearch, ExoPlayer, FastJSON, Flink, Guava, Jenkins, LibGDX, Logstash, Mockito, OpenRefine, Presto, Quarkus, QuestDB, Redisson, RxJava, Tink).
+[tag.py](Dataset4TD/SATD%20detectors/GGSATD/tag.py) exploits 10 projects (Apache Ant, ArgoUML, Columba, EMF, Hibernate ,JEdit ,JFreeChart ,JMeter ,JRuby ,SQuirrel) for model training, so as to obtain the labels for other 18 projects (ANTLR4, DBeaver, Elasticsearch, ExoPlayer, FastJSON, Flink, Guava, Jenkins, LibGDX, Logstash, Mockito, OpenRefine, Presto, Quarkus, QuestDB, Redisson, RxJava, Tink).
