@@ -26,10 +26,10 @@ The table below is the running results of our reproduced model.
 For each project, the training and testing time is about 387s.
 
 ## File Explanation
-**train.py-Line 12** set one project as testing set and the others as training set. [*easy to modify*]
+[train.py-Line 12](/SATD%20detectors/XGBoost/train.py#Line12) sets one project as testing set and the others as training set. [*easy to modify*]
 
-**XGBoost.py** make the approach as a python class for easy calling. [*approach integration*]
+[XGBoost.py](/SATD%20detectors/XGBoost/XGBoost.py) makes the approach as a python class for easy calling. [*approach integration*]
 
-**cross_project.py** uses **XGBoost.py** for cross project experiments. [*get all results at one time*]
+[cross_project.py](/SATD%20detectors/XGBoost/cross_project.py) uses [XGBoost.py](/SATD%20detectors/XGBoost/XGBoost.py) for cross project experiments. [*get all results at one time*]
 
-**tag.py** exploits 10 projects (Apache Ant, ArgoUML, Columba, EMF, Hibernate ,JEdit ,JFreeChart ,JMeter ,JRuby ,SQuirrel) for model training, so as to obtain the labels for other 18 projects (ANTLR4, DBeaver, Elasticsearch, ExoPlayer, FastJSON, Flink, Guava, Jenkins, LibGDX, Logstash, Mockito, OpenRefine, Presto, Quarkus, QuestDB, Redisson, RxJava, Tink).
+[tag.py](/SATD%20detectors/XGBoost/tag.py) exploits 10 projects (Apache Ant, ArgoUML, Columba, EMF, Hibernate ,JEdit ,JFreeChart ,JMeter ,JRuby ,SQuirrel) for model training, so as to obtain the labels for other 18 projects (ANTLR4, DBeaver, Elasticsearch, ExoPlayer, FastJSON, Flink, Guava, Jenkins, LibGDX, Logstash, Mockito, OpenRefine, Presto, Quarkus, QuestDB, Redisson, RxJava, Tink).
