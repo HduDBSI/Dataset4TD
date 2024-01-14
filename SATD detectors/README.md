@@ -1,4 +1,4 @@
-1. Run [GGSATD/tag.py](GGSATD/tag.py), and the comments with GGSATD's labels can be found in directory [comments-with-labels/GGSATD](/comments-with-labels/GGSATD).
+1. Run [GGSATD/tag.py](GGSATD/tag.py), and the comments with GGSATD's labels can be found in directory [comments-with-labels/GGSATD](../comments-with-labels/GGSATD).
 2. Run [MAT/tag.py](MAT/tag.py), and the comments with MAT's labels can be found in directory [comments-with-labels/MAT](/comments-with-labels/MAT).
 3. Run [XGBoost/tag.py](XGBoost/tag.py), and the comments with XGBoost's labels can be found in [comments-with-labels/XGBoost](/comments-with-labels/XGBoost).
 4. Run [vote.py](vote.py), and the comments with voted labels can be found in directory [comments-with-labels/Final](/comments-with-labels/Final).
