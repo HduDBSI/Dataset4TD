@@ -68,10 +68,10 @@ The table below is the running results of our reproduced model in cross-project 
 | **Average**| 97.04%   | 80.32%    | 62.23% | 68.93%   |
 
 ## File Explanation
-[train.py-Line 62](Dataset4TD/SATD%20detectors/GGSATD/train.py#Line62) sets one project as testing set and the others as training set. [*easy to modify*]
+[train.py-Line 62](/SATD%20detectors/GGSATD/train.py#Line62) sets one project as testing set and the others as training set. [*easy to modify*]
 
-[GGSATD.py](Dataset4TD/SATD%20detectors/GGSATD/GGSATD.py) makes the approach as a python class for easy calling. [*approach integration*]
+[GGSATD.py](/SATD%20detectors/GGSATD/GGSATD.py) makes the approach as a python class for easy calling. [*approach integration*]
 
-[cross_project.py](Dataset4TD/SATD%20detectors/GGSATD/cross_project.py) uses [GGSATD.py](Dataset4TD/SATD%20detectors/GGSATD/GGSATD.py) for cross project experiments. [*get all results at one time*]
+[cross_project.py](/SATD%20detectors/GGSATD/cross_project.py) uses [GGSATD.py](Dataset4TD/SATD%20detectors/GGSATD/GGSATD.py) for cross project experiments. [*get all results at one time*]
 
-[tag.py](Dataset4TD/SATD%20detectors/GGSATD/tag.py) exploits 10 projects (Apache Ant, ArgoUML, Columba, EMF, Hibernate ,JEdit ,JFreeChart ,JMeter ,JRuby ,SQuirrel) for model training, so as to obtain the labels for other 18 projects (ANTLR4, DBeaver, Elasticsearch, ExoPlayer, FastJSON, Flink, Guava, Jenkins, LibGDX, Logstash, Mockito, OpenRefine, Presto, Quarkus, QuestDB, Redisson, RxJava, Tink).
+[tag.py](/SATD%20detectors/GGSATD/tag.py) exploits 10 projects (Apache Ant, ArgoUML, Columba, EMF, Hibernate ,JEdit ,JFreeChart ,JMeter ,JRuby ,SQuirrel) for model training, so as to obtain the labels for other 18 projects (ANTLR4, DBeaver, Elasticsearch, ExoPlayer, FastJSON, Flink, Guava, Jenkins, LibGDX, Logstash, Mockito, OpenRefine, Presto, Quarkus, QuestDB, Redisson, RxJava, Tink).
