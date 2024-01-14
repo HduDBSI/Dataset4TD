@@ -1,5 +1,5 @@
 # Reproduction
-The code is reproduced from XGBoost (["Multiclass Classification for Self-Admitted Technical Debt Based on XGBoost"](https://doi.org/10.1145/3447247.)), whose authors did not share their code.
+The code is reproduced from XGBoost (["Multiclass Classification for Self-Admitted Technical Debt Based on XGBoost"](https://doi.org/10.1145/3447247.)), whose authors did not share their code in the paper.
 
 # Results
 As the paper XGBoost (["Multiclass Classification for Self-Admitted Technical Debt Based on XGBoost"](https://doi.org/10.1145/3447247.)) focused on muticlass classification task for SATD, there are no binary classification results in their paper. Therefore, we only show the results of our reproduced model.
