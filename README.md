@@ -19,3 +19,6 @@ Go to [data_collection](/data_collection), run function [combine](/data_collecti
 
 # Metrics Tools
 Go to [metrics tool](/metrics%20tool), utilize the tools to calculate code metrics at file, class, method and block levels.
+
+# Match metrics with labels
+Go to [data_collection](/data_collection), run [match.py](/data_collection/match.py) to match the metrics with labels. The code snippets with labels and metrics can be found in [code snippets-with-labels&metrcis](/code%20snippets-with-labels&metrcis).
