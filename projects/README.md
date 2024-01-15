@@ -3,11 +3,11 @@ Run [mkdirs.py](mkdirs.py) to make directories [/code snippets-without-labels](/
 # Project Information
 We find projects in this [url](https://github.com/topics/java?l=java&o=desc&s=stars) and the selected projects should meet these conditions:
 
-1. a software with continuous maintanance
-2. last version release is within one year
-3. commits exceeds 2000
-4. commented by English
-5. contirbutors exceeds 100
+1. A software with continuous maintanance
+2. Last version release is within one year
+3. Commits exceeds 2000
+4. Commented by English
+5. Contirbutors exceeds 100
 
 We show the details in the table below.
 |project| version |released date| decription |stars |contributors |commits|
