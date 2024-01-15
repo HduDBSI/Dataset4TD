@@ -1,0 +1,22 @@
+( ClassOrInterfaceDeclaration_A 
+  ( Modifier_public ) Modifier_public 
+  ( SimpleName_A ) SimpleName_A 
+  ( MethodDeclaration_void_B 
+    ( Modifier_public ) Modifier_public 
+    ( SimpleName_B ) SimpleName_B 
+    ( VoidType_null ) VoidType_null 
+    ( BlockStmt_null 
+      ( ReturnStmt_null 
+        ( MethodCallExpr_null 
+          ( NameExpr_requests 
+            ( SimpleName_requests ) SimpleName_requests 
+          ) NameExpr_requests 
+          ( SimpleName_remove ) SimpleName_remove 
+          ( NameExpr_id 
+            ( SimpleName_id ) SimpleName_id 
+          ) NameExpr_id 
+        ) MethodCallExpr_null 
+       ) ReturnStmt_null 
+    ) BlockStmt_null 
+  ) MethodDeclaration_void_B 
+) ClassOrInterfaceDeclaration_A
