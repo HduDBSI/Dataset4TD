@@ -1,4 +1,6 @@
 # CK
+Code metrics for Java code by means of static analysis
+
 ## ck-master.zip #
 Unmodified version of [ck-0.7.0](https://github.com/mauricioaniche/ck/releases/tag/ck-0.7.0).
 
