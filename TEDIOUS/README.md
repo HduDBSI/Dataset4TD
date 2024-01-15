@@ -1,7 +1,7 @@
 # Environment
 Windows 10 Professional Edition
 
-Download [JDK 11](https://corretto.aws/downloads/resources/11.0.18.10.1/amazon-corretto-11.0.18.10.1-windows-x64-jdk.zip).
+Download amazon-corretto-11.0.18.10.1-windows-x64-jdk.zip from [here](https://corretto.aws/downloads/resources/11.0.18.10.1/amazon-corretto-11.0.18.10.1-windows-x64-jdk.zip).
 
 Unzip amazon-corretto-11.0.18.10.1-windows-x64-jdk.zip to [jdk11](jdk11) in this directory.
 
