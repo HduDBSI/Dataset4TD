@@ -8,6 +8,7 @@ To utilize this automated framework for constructing the aforementioned dataset 
 1. Go to [javaparser_extract](/javaparser_extract) to extracts code snippets at the file-level, class-level, method-level, and block-level. The extracted code snippets can be found in [code snippets-without-labels](/code%20snippets-without-labels).
 2. Go to [data_collection](/data_collection), run function [split](/data_collection/map_remap.py#L144) to extract comments from the code snippets. The extracted comments can be found in [comments-without-labels](/comments-without-labels).
 3. Go to [SATD detectors](/SATD%20detectors), employ three SATD detectors to classify the comments. The classified comments can be found in [comments-with-labels](/comments-with-labels).
+4. Go to [metrics tool](/metrics%20tool), utilize the tools to calculate code metrics at file, class, method and block levels.
 
 # Manual Check
 Go to [manual check](/manual%20check), use the scripts and the annotation tool to help manual check. The checked comments can be found in [comments-with-labels-checked](/comments-with-labels-checked).
