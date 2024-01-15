@@ -1,3 +1,5 @@
+Run [mkdirs.py](mkdirs.py) to make directories [/code snippets-without-labels](/code%20snippets-without-labels), [/comments-without-labels](/comments-without-labels), [/comments-with-labels](/comments-with-labels), [comments-with-labels-checked](comments-with-labels-checked), [code snippets-with-labels](code%20snippets-with-labels), [/metrics](/metrics) and [/code snippets-with-labels&metrics](/code%20snippets-with-labels&metrics).
+
 # Project Information
 We find projects in this [url](https://github.com/topics/java?l=java&o=desc&s=stars) and the selected projects should meet these conditions:
 
