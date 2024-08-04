@@ -1,15 +1,14 @@
 import sys
 sys.path.append("..")
 from project_Info import *
-from LatexTable import *
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from utils import cal_metrics
 from sklearn.model_selection import StratifiedKFold
-from lightgbm import LGBMClassifier
+from sklearn.ensemble import RandomForestClassifier
 import pandas as pd
-from imblearn.over_sampling import SMOTE
-import numpy as np
-random_state = 1
+import time
 
+random_state = 1
+label_column_name = 'CommentsAssociatedLabel'
 # 6 metrics
 code_metrics = [ 
     'LOC', 
@@ -48,19 +47,17 @@ pmd_metrics = [
     'UseStringBufferForStringAppends'
 ]
 
-metrics = code_metrics + cs_metrics + pmd_metrics
+total_metrics = code_metrics + cs_metrics + pmd_metrics
 
 def makeXy():
-
     X_list, y_list = [], []
     for project in projects:
         file_name = f'MatchResults/{project}_Matched.csv'
         data = pd.read_csv(file_name)
 
         # define features and labels
-
-        X_tmp = data[metrics]
-        y_tmp = data['CommentsAssociatedLabel']
+        X_tmp = data[total_metrics]
+        y_tmp = data[label_column_name]
         
         X_list.append(X_tmp)
         y_list.append(y_tmp)
@@ -85,7 +82,8 @@ def ten_fold():
     precisions = []
     recalls = []
     f1_scores = []
-    feature_importances = []
+    AUCs = []
+    MCCs = []
     
     X = X.fillna(-1)
     # loop for cross validation
@@ -94,49 +92,49 @@ def ten_fold():
         X_train, X_test = X.iloc[train_index], X.iloc[test_index]
         y_train, y_test = y.iloc[train_index], y.iloc[test_index]
    
-        X_train_resample, y_train_resample = X_train, y_train
-        clf = LGBMClassifier(objective='binary', metric='binary_logloss', random_state=random_state, n_jobs=12)
+        clf = RandomForestClassifier(random_state=random_state, n_jobs=12)
         
         # train 
-        clf.fit(X_train_resample, y_train_resample)
+        clf.fit(X_train, y_train)
        
         # predict
         y_pred = clf.predict(X_test)
+        y_pred_prob = clf.predict_proba(X_test)[:, 1]
 
-        # record importances
-        importance = clf.feature_importances_
-        feature_importances.append(importance)
-        
-        # calculate accuracy, precision, recall, f1-score
-        accuracy = accuracy_score(y_test, y_pred)
-        precision = precision_score(y_test, y_pred)
-        recall = recall_score(y_test, y_pred)
-        f1 = f1_score(y_test, y_pred)
+        # calculate metrics
+        metrics = cal_metrics(y_test, y_pred, y_pred_prob)
 
         # save this round result
-        accuracies.append(accuracy)
-        precisions.append(precision)
-        recalls.append(recall)
-        f1_scores.append(f1)
+        accuracies.append(metrics['ACC'])
+        precisions.append(metrics['P'])
+        recalls.append(metrics['R'])
+        f1_scores.append(metrics['F1'])
+        AUCs.append(metrics['AUC'])
+        MCCs.append(metrics['MCC'])
 
     # calculate average
     mean_accuracy = sum(accuracies) / len(accuracies)
     mean_precision = sum(precisions) / len(precisions)
     mean_recall = sum(recalls) / len(recalls)
     mean_f1_score = sum(f1_scores) / len(f1_scores)
+    mean_auc = sum(AUCs) / len(AUCs)
+    mean_mcc = sum(MCCs) / len(MCCs)
 
-    print("Mean Accuracy:{:.2%}".format(mean_accuracy))
-    print("Mean Precision:{:.2%}".format(mean_precision))
-    print("Mean Recall:{:.2%}".format(mean_recall))
-    print("Mean F1-score:{:.2%}".format(mean_f1_score))
-    return mean_precision, mean_recall, mean_f1_score
+    print("Mean Accuracy:{:.2f}".format(mean_accuracy))
+    print("Mean Precision:{:.2f}".format(mean_precision))
+    print("Mean Recall:{:.2f}".format(mean_recall))
+    print("Mean F1-score:{:.2f}".format(mean_f1_score))
+    print("Mean AUC: {:.2f}".format(mean_auc))
+    print("Mean MCC: {:.2f}".format(mean_mcc))
 
-import time
+    return mean_precision, mean_recall, mean_f1_score, mean_auc, mean_mcc
+
+
 t = time.time()
-p, r, f = ten_fold()
-print(time.time()-t)
+p, r, f1, auc, mcc = ten_fold()
+print(time.time() - t)
 
-with open('total_ten_fold.txt',"w") as ff:
-    ff.write(f'P, R, F\n{p}, {r}, {f}')
+with open('results/total_ten_fold.txt',"w") as f:
+    f.write(f'P, R, F, AUC, MCC\n{p}, {r}, {f1}, {auc}, {mcc}')
 
 
