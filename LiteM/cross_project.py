@@ -3,8 +3,8 @@ sys.path.append("..")
 from project_Info import *
 import pandas as pd
 from lightgbm import LGBMClassifier
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-from sklearn.model_selection import train_test_split
+from utils import cal_metrics
+import time
 
 random_state = 1
 label_column_name = 'CommentsAssociatedLabel'
@@ -49,21 +49,21 @@ def cross(test_file, train_files, granularity):
     
     # predict
     y_pred = clf.predict(X_test)
+    y_pred_prob = clf.predict_proba(X_test)[:, 1]
 
-    # calculate accuracy, precision, recall, f1-score
-    accuracy = accuracy_score(y_test, y_pred)
-    precision = precision_score(y_test, y_pred)
-    recall = recall_score(y_test, y_pred)
-    f1 = f1_score(y_test, y_pred)
+    # calculate metrics
+    metrics = cal_metrics(y_test, y_pred, y_pred_prob)
 
-    print("Accuracy:{:.2%}".format(accuracy))
-    print("Precision:{:.2%}".format(precision))
-    print("Recall:{:.2%}".format(recall))
-    print("F1-score:{:.2%}".format(f1))
+    print("Mean Accuracy:{:.2f}".format(metrics['ACC']))
+    print("Mean Precision:{:.2f}".format(metrics['P']))
+    print("Mean Recall:{:.2f}".format(metrics['R']))
+    print("Mean F1-score:{:.2f}".format(metrics['F1']))
+    print("Mean AUC: {:.2f}".format(metrics['AUC']))
+    print("Mean MCC: {:.2f}".format(metrics['MCC']))
     
-    return precision, recall, f1
+    return metrics
 
-import time
+
 t = time.time()
 
 latex_matrix = []
@@ -76,8 +76,8 @@ for project in projects:
         test_file = f'../code snippets-with-labels&metrics/{granularity}/{test_project}_{granularity}Level.csv'
         train_files = [(f'../code snippets-with-labels&metrics/{granularity}/{train_project}_{granularity}Level.csv') for train_project in train_projects]
         print('===='+project, granularity+'====')
-        p, r, f = cross(test_file, train_files, granularity)
-        latex_line = latex_line + [p, r, f]
+        metrics = cross(test_file, train_files, granularity)
+        latex_line = latex_line + [metrics['P'], metrics['R'], metrics['F1'], metrics['AUC'], metrics['MCC']]
     latex_matrix.append(latex_line)
 
 print(time.time()-t)
