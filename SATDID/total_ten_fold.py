@@ -1,5 +1,4 @@
 import numpy as np
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from sklearn.model_selection import StratifiedKFold
 from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import Embedding, CuDNNLSTM, Dense, GlobalMaxPooling1D, LSTM
@@ -10,9 +9,10 @@ import time
 import sys
 sys.path.append("../") 
 from project_Info import projects
+from utils import cal_metrics
 # parameter settings
 latent_dim = 64
-batch_size = 256
+batch_size = 64
 drop_prob = 0.2
 epochs = 40
 max_length = 1500
@@ -70,6 +70,8 @@ def ten_fold():
     precisions = []
     recalls = []
     f1_scores = []
+    AUCs = []
+    MCCs = []
 
     # loop k times for cross validation
     for train_index, test_index in skf.split(X, y):
@@ -85,40 +87,40 @@ def ten_fold():
         model.fit(X_train, y_train, epochs=epochs, batch_size=batch_size, verbose=False)
 
         # predict
-        # y_pred = model.predict_classes(X_test)
         y_pred_prob = model.predict(X_test)
         y_pred = (y_pred_prob > 0.5).astype("int32")
 
-        # calculate accuracy, precision, recall, f1-score
-        accuracy = accuracy_score(y_test, y_pred)
-        precision = precision_score(y_test, y_pred)
-        recall = recall_score(y_test, y_pred)
-        f1 = f1_score(y_test, y_pred)
+        # calculate metrics
+        metrics = cal_metrics(y_test, y_pred, y_pred_prob)
 
         # save this round result
-        accuracies.append(accuracy)
-        precisions.append(precision)
-        recalls.append(recall)
-        f1_scores.append(f1)
-        print(time.time() - start_time)
+        accuracies.append(metrics['ACC'])
+        precisions.append(metrics['P'])
+        recalls.append(metrics['R'])
+        f1_scores.append(metrics['F1'])
+        AUCs.append(metrics['AUC'])
+        MCCs.append(metrics['MCC'])
     
-    # 计算平均指标
-    mean_accuracy = np.mean(accuracies)
-    mean_precision = np.mean(precisions)
-    mean_recall = np.mean(recalls)
-    mean_f1_score = np.mean(f1_scores)
-    mean_cost_time = (time.time()-start_time)/10
-    print("Mean Accuracy:{:.2%}".format(mean_accuracy))
-    print("Mean Precision:{:.2%}".format(mean_precision))
-    print("Mean Recall:{:.2%}".format(mean_recall))
-    print("Mean F1-score:{:.2%}".format(mean_f1_score))
-    print("Mean cost time:{:.0f}s".format(mean_cost_time))
-    return mean_accuracy, mean_precision, mean_recall, mean_f1_score, mean_cost_time
+    # calculate average
+    mean_accuracy = sum(accuracies) / len(accuracies)
+    mean_precision = sum(precisions) / len(precisions)
+    mean_recall = sum(recalls) / len(recalls)
+    mean_f1_score = sum(f1_scores) / len(f1_scores)
+    mean_auc = sum(AUCs) / len(AUCs)
+    mean_mcc = sum(MCCs) / len(MCCs)
 
-import time
+    print("Mean Accuracy:{:.2f}".format(mean_accuracy))
+    print("Mean Precision:{:.2f}".format(mean_precision))
+    print("Mean Recall:{:.2f}".format(mean_recall))
+    print("Mean F1-score:{:.2f}".format(mean_f1_score))
+    print("Mean AUC: {:.2f}".format(mean_auc))
+    print("Mean MCC: {:.2f}".format(mean_mcc))
+
+    return mean_precision, mean_recall, mean_f1_score, mean_auc, mean_mcc
+
 tt = time.time()
-_, p, r, f, t = ten_fold()
+p, r, f, auc, mcc = ten_fold()
 print(time.time()-tt)
 
-with open('total_ten_fold.txt',"w") as ff:
-    ff.write(f'P, R, F\n{p}, {r}, {f}')
+with open('results/total_ten_fold.txt',"w") as f:
+    f.write(f'P, R, F, AUC, MCC\n{p}, {r}, {f}, {auc}, {mcc}')
