@@ -1,5 +1,4 @@
 import numpy as np
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from sklearn.model_selection import StratifiedKFold
 from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import Embedding, CuDNNLSTM, Dense, GlobalMaxPooling1D, LSTM
@@ -9,10 +8,12 @@ import pandas as pd
 import time
 import sys
 sys.path.append("../") 
-from project_Info import projects
+from project_Info import projects, project_names
+from utils import cal_metrics
+from LatexTable import *
 # parameter settings
 latent_dim = 64
-batch_size = 256
+batch_size = 64
 drop_prob = 0.2
 epochs = 40
 random_state = 1
@@ -27,7 +28,7 @@ def create_model(input_dim, input_length, latent_dim, drop_prob):
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
     return model
 
-def k_folder_validation(project, k=10):
+def k_folds(project, k_fold=10):
     start_time = time.time()
     
     df = pd.read_csv(f'data/{project}.csv')
@@ -52,14 +53,15 @@ def k_folder_validation(project, k=10):
     
     y = np.array(labels)
 
-    # k 折交叉验证
-    skf = StratifiedKFold(n_splits=k, shuffle=True, random_state=random_state)
+    # k folds cross validation
+    skf = StratifiedKFold(n_splits=k_fold, shuffle=True, random_state=random_state)
 
     accuracies = []
     precisions = []
     recalls = []
     f1_scores = []
-    
+    AUCs=[]
+    MCCs=[]
 
     # loop k times for cross validation
     for train_index, test_index in skf.split(X, y):
@@ -75,50 +77,54 @@ def k_folder_validation(project, k=10):
         model.fit(X_train, y_train, epochs=epochs, batch_size=batch_size, verbose=False)
 
         # predict
-        # y_pred = model.predict_classes(X_test)
         y_pred_prob = model.predict(X_test)
         y_pred = (y_pred_prob > 0.5).astype("int32")
 
-        # calculate accuracy, precision, recall, f1-score
-        accuracy = accuracy_score(y_test, y_pred)
-        precision = precision_score(y_test, y_pred)
-        recall = recall_score(y_test, y_pred)
-        f1 = f1_score(y_test, y_pred)
+        # calculate metrics
+        metrics = cal_metrics(y_test, y_pred, y_pred_prob)
 
         # save this round result
-        accuracies.append(accuracy)
-        precisions.append(precision)
-        recalls.append(recall)
-        f1_scores.append(f1)
-        print(time.time() - start_time)
+        accuracies.append(metrics['ACC'])
+        precisions.append(metrics['P'])
+        recalls.append(metrics['R'])
+        f1_scores.append(metrics['F1'])
+        AUCs.append(metrics['AUC'])
+        MCCs.append(metrics['MCC'])
     
-    # 计算平均指标
-    mean_accuracy = np.mean(accuracies)
-    mean_precision = np.mean(precisions)
-    mean_recall = np.mean(recalls)
-    mean_f1_score = np.mean(f1_scores)
-    mean_cost_time = (time.time()-start_time)/k
-    print("Mean Accuracy:{:.2%}".format(mean_accuracy))
-    print("Mean Precision:{:.2%}".format(mean_precision))
-    print("Mean Recall:{:.2%}".format(mean_recall))
-    print("Mean F1-score:{:.2%}".format(mean_f1_score))
-    print("Mean cost time:{:.0f}s".format(mean_cost_time))
-    return mean_accuracy, mean_precision, mean_recall, mean_f1_score, mean_cost_time
+    # calculate average
+    mean_accuracy = sum(accuracies) / k_fold
+    mean_precision = sum(precisions) / k_fold
+    mean_recall = sum(recalls) / k_fold
+    mean_f1_score = sum(f1_scores) / k_fold
+    mean_cost_time = (time.time() - start_time) / k_fold
+    mean_auc = sum(AUCs) / k_fold
+    mean_mcc = sum(MCCs) / k_fold
 
-A, P, R, F, T = [], [], [], [], []
+    print("Mean Accuracy:{:.2f}".format(mean_accuracy))
+    print("Mean Precision:{:.2f}".format(mean_precision))
+    print("Mean Recall:{:.2f}".format(mean_recall))
+    print("Mean F1-score:{:.2f}".format(mean_f1_score))
+    print("Mean AUC: {:.2f}".format(mean_auc))
+    print("Mean MCC: {:.2f}".format(mean_mcc))
+    print("Mean Cost Time: {:.2f} seconds".format(mean_cost_time))
+
+    return mean_precision, mean_recall, mean_f1_score, mean_cost_time, mean_auc, mean_mcc
+
+latex_matrix = []
+times = []
 for project in projects:
-    a, p, r, f, t = k_folder_validation(project)
-    A.append(a)
-    P.append(p)
-    R.append(r)
-    F.append(f)
-    T.append(t)
+    print('===='+project+'====')
+    p, r, f, t, auc, mcc = k_folds(project)
+    latex_matrix.append([p, r, f, auc, mcc])
+    times.append(t)
 
-print("|    Project    | Accuracy | Precision | Recall | F1_score | Cost Time |")
-for i in range(len(projects)):
-    project_name = projects[i].split('-')[0]
-    print("| {:^13} | {:^8.2%} | {:^9.2%} | {:^6.2%} | {:^8.2%} | {:9^.0f} |".
-        format(project_name, A[i], P[i], R[i], F[i], T[i]))
+avgs = avgEachColumn(latex_matrix)
+matrix = insertRow(latex_matrix, avgs, len(latex_matrix))
+project_names.append('\\textbf{Average}')
+matrix = insertColumn(matrix, project_names, 0)
+writeTable(matrix, 'results/within_project.txt')
 
-print("|    Average    | {:^8.2%} | {:^9.2%} | {:^6.2%} | {:^8.2%} | {:9^.0f} |".
-    format(np.mean(A), np.mean(P), np.mean(R), np.mean(F), np.mean(T)))
+with open(f'results/time3.txt', 'w') as f:
+    for t, project in zip(times, project_names):
+        f.write("{}\t{:.2f}\n".format(project, t))
+    f.write("Median\t{:.2f}\n".format(np.median(times)))
