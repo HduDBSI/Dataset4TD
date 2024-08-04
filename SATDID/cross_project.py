@@ -1,6 +1,4 @@
 import numpy as np
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-from sklearn.model_selection import StratifiedKFold
 from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import Embedding, CuDNNLSTM, Dense, GlobalMaxPooling1D, LSTM
 from keras.preprocessing.text import Tokenizer
@@ -10,9 +8,11 @@ import time
 import sys
 sys.path.append("../") 
 from project_Info import projects, project_names
+from utils import cal_metrics
+from LatexTable import *
 # parameter settings
 latent_dim = 64
-batch_size = 256
+batch_size = 64
 drop_prob = 0.2
 epochs = 40
 max_length = 1500
@@ -70,22 +70,18 @@ def cross(test_file, train_files):
     y_pred_prob = model.predict(sequences_test)
     y_pred = (y_pred_prob > 0.5).astype("int32")
 
-    # calculate accuracy, precision, recall, f1-score
-    accuracy = accuracy_score(y_test, y_pred)
-    precision = precision_score(y_test, y_pred)
-    recall = recall_score(y_test, y_pred)
-    f1 = f1_score(y_test, y_pred)
-    cost_time = time.time()-start_time
+    # calculate metrics
+    metrics = cal_metrics(y_test, y_pred, y_pred_prob)
+
+    print("Mean Accuracy:{:.2f}".format(metrics['ACC']))
+    print("Mean Precision:{:.2f}".format(metrics['P']))
+    print("Mean Recall:{:.2f}".format(metrics['R']))
+    print("Mean F1-score:{:.2f}".format(metrics['F1']))
+    print("Mean AUC: {:.2f}".format(metrics['AUC']))
+    print("Mean MCC: {:.2f}".format(metrics['MCC']))
     
-    print("Accuracy:{:.2%}".format(accuracy))
-    print("Precision:{:.2%}".format(precision))
-    print("Recall:{:.2%}".format(recall))
-    print("F1-score:{:.2%}".format(f1))
-    print("cost time:{:.0f}s".format(cost_time))
-    return accuracy, precision, recall, f1, cost_time
+    return metrics
 
-
-import time
 t = time.time()
 
 latex_matrix = []
@@ -93,20 +89,17 @@ for project in projects:
     test_project = project
     train_projects = projects.copy()
     train_projects.remove(test_project)
-    latex_line = []
-
     test_file = f'data/{test_project}.csv'
     train_files = [(f'data/{train_project}.csv') for train_project in train_projects]
     print('===='+project+'====')
-    _, p, r, f, _ = cross(test_file, train_files)
-    latex_line = latex_line + [p, r, f]
+    metrics = cross(test_file, train_files)
+    latex_line = [metrics['P'], metrics['R'], metrics['F1'], metrics['AUC'], metrics['MCC']]
     latex_matrix.append(latex_line)
 
 print(time.time()-t)
 
-from LatexTable import *
 avgs = avgEachColumn(latex_matrix)
 matrix = insertRow(latex_matrix, avgs, len(latex_matrix))
 project_names.append('\\textbf{Average}')
 matrix = insertColumn(matrix, project_names, 0)
-writeTable(matrix, 'cross_project.txt')
+writeTable(matrix, 'results/cross_project.txt')
