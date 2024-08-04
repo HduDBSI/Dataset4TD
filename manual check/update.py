@@ -17,11 +17,18 @@ def my_update(df_updater, df_updatee, based_column_name, update_column_name):
     df_updatee[update_column_name] = df_updatee[update_column_name].astype(update_column_type)
 
     return df_updatee
-    
-# updater = pd.read_csv('all_comment_checked.csv', encoding=encoding)
-updater = pd.read_csv('all_comment_checked_deprecated.csv', encoding=encoding)
+
+gs = pd.read_csv('Gold Standard.csv', encoding=encoding)
+all = pd.read_csv('all_comment.csv', encoding=encoding)
+
+all_updated = my_update(gs, all, 'comment', 'label')
+idx = all_updated['comment'].str.contains('@deprecated|@Deprecated', case=False)
+all_updated.loc[idx, 'label'] = 1
+
+all_updated.to_csv('all_comment_checked.csv', encoding=encoding, index=False)
+all_updated.to_excel('all_comment_checked.xlsx', index=False)
 
 for project in projects:
-    df = pd.read_csv(f'../comments-with-labels/Final/{project}_allLevel_comment.csv')
-    df_updated = my_update(updater, df, 'comment', 'label')
+    df = pd.read_csv(f'../comments-with-labels/Final/{project}_allLevel_comment.csv', encoding=encoding)
+    df_updated = my_update(all_updated, df, 'comment', 'label')
     df_updated.to_csv(f'../comments-with-labels-checked/Final/{project}_allLevel_comment.csv', index=False, encoding=encoding)
