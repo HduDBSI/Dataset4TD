@@ -1,7 +1,8 @@
 import sys
 sys.path.append("../") 
-from project_Info import projects
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from project_Info import projects, project_names
+from utils import cal_metrics
+from LatexTable import *
 from sklearn.model_selection import StratifiedKFold
 import pandas as pd
 from imblearn.over_sampling import SMOTE
@@ -9,6 +10,7 @@ from sklearn.ensemble import RandomForestClassifier
 import time
 import numpy as np
 random_state = 1
+label_column_name = 'CommentsAssociatedLabel'
 
 # 6 metrics
 code_metrics = [ 
@@ -48,7 +50,7 @@ pmd_metrics = [
     'UseStringBufferForStringAppends'
 ]
 
-metrics = code_metrics + cs_metrics + pmd_metrics
+total_metrics = code_metrics + cs_metrics + pmd_metrics
 
 # k folds cross validation
 def k_folds_train(project, k_fold=10):
@@ -57,7 +59,7 @@ def k_folds_train(project, k_fold=10):
     data = pd.read_csv(file_name)
 
     # define features and labels
-    X, y = data[metrics], data['CommentsAssociatedLabel']
+    X, y = data[total_metrics], data[label_column_name]
     
     # create StratifiedKFold object
     skf = StratifiedKFold(n_splits=k_fold, shuffle=True, random_state=random_state)
@@ -66,6 +68,8 @@ def k_folds_train(project, k_fold=10):
     precisions = []
     recalls = []
     f1_scores = []
+    AUCs = []
+    MCCs = []
     start_time = time.time()
     X = X.fillna(-1)
 
@@ -80,25 +84,25 @@ def k_folds_train(project, k_fold=10):
         X_train_resample, y_train_resample = smote.fit_resample(X_train, y_train)
     
         # init classifier
-        clf = RandomForestClassifier(n_jobs=12, random_state=random_state)
+        clf = RandomForestClassifier(random_state=random_state, n_jobs=12)
         
         # train 
         clf.fit(X_train_resample, y_train_resample)
         
         # predict
         y_pred = clf.predict(X_test)
-       
-        # calculate accuracy, precision, recall, f1-score
-        accuracy = accuracy_score(y_test, y_pred)
-        precision = precision_score(y_test, y_pred)
-        recall = recall_score(y_test, y_pred)
-        f1 = f1_score(y_test, y_pred)
+        y_pred_prob = clf.predict_proba(X_test)[:, 1]
+
+        # calculate metrics
+        metrics = cal_metrics(y_test, y_pred, y_pred_prob)
 
         # save this round result
-        accuracies.append(accuracy)
-        precisions.append(precision)
-        recalls.append(recall)
-        f1_scores.append(f1)
+        accuracies.append(metrics['ACC'])
+        precisions.append(metrics['P'])
+        recalls.append(metrics['R'])
+        f1_scores.append(metrics['F1'])
+        AUCs.append(metrics['AUC'])
+        MCCs.append(metrics['MCC'])
 
     # calculate average
     mean_accuracy = sum(accuracies) / k_fold
@@ -106,24 +110,34 @@ def k_folds_train(project, k_fold=10):
     mean_recall = sum(recalls) / k_fold
     mean_f1_score = sum(f1_scores) / k_fold
     mean_cost_time = (time.time()-start_time) / k_fold
+    mean_auc = sum(AUCs) / k_fold
+    mean_mcc = sum(MCCs) / k_fold
 
-    return mean_accuracy, mean_precision, mean_recall, mean_f1_score, mean_cost_time
+    print("Mean Accuracy:{:.2f}".format(mean_accuracy))
+    print("Mean Precision:{:.2f}".format(mean_precision))
+    print("Mean Recall:{:.2f}".format(mean_recall))
+    print("Mean F1-score:{:.2f}".format(mean_f1_score))
+    print("Mean AUC: {:.2f}".format(mean_auc))
+    print("Mean MCC: {:.2f}".format(mean_mcc))
+    print("Mean Cost Time: {:.2f} seconds".format(mean_cost_time))
 
-A, P, R, F, T = [], [], [], [], []
+    return mean_precision, mean_recall, mean_f1_score, mean_cost_time, mean_auc, mean_mcc
+
+latex_matrix = []
+times = []
 for project in projects:
-    a, p, r, f, t = k_folds_train(project)
-    A.append(a)
-    P.append(p)
-    R.append(r)
-    F.append(f)
-    T.append(t)
-print("|    Project    | Accuracy | Precision | Recall | F1_score | Cost Time |")
-for i in range(len(projects)):
-    project_name = projects[i].split('-')[0]
-    print("| {:^13} | {:^8.2%} | {:^9.2%} | {:^6.2%} | {:^8.2%} | {:9^.2f} |".
-        format(project_name, A[i], P[i], R[i], F[i], T[i]))
+    print('===='+project+'====')
+    p, r, f, t, auc, mcc = k_folds_train(project)
+    latex_matrix.append([p, r, f, auc, mcc])
+    times.append(t)
 
-print("|    Average    | {:^8.2%} | {:^9.2%} | {:^6.2%} | {:^8.2%} | {:9^.2f} |".
-    format(np.mean(A), np.mean(P), np.mean(R), np.mean(F), np.mean(T)))
+avgs = avgEachColumn(latex_matrix)
+matrix = insertRow(latex_matrix, avgs, len(latex_matrix))
+project_names.append('\\textbf{Average}')
+matrix = insertColumn(matrix, project_names, 0)
+writeTable(matrix, 'results/within_project.txt')
 
-print(np.sum(T))
+with open(f'results/time3.txt', 'w') as f:
+    for t, project in zip(times, project_names):
+        f.write("{}\t{:.2f}\n".format(project, t))
+    f.write("Median\t{:.2f}\n".format(np.median(times)))
