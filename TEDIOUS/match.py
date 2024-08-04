@@ -1,11 +1,11 @@
 import pandas as pd
 import sys
-from tqdm import tqdm
 sys.path.append("../") 
-from project_Info import projects
+from project_Info import projects, project_names
 import re
 import time
 import os
+import numpy as np
 
 columns_order = ['FilePath', 'LineNum', 'Rule']
 
@@ -123,13 +123,15 @@ def readPMD(file):
     pmd['FilePath'], pmd['LineNum'] = filePaths, lineNums
     
     return pmd[columns_order]
-    
+
+def myReplace(s:str) -> str:
+    return s.replace('..\\', '')
+
 def readMethod(file):
     
     method = pd.read_csv(file)
     
-    for i in range(len(method)):
-        method['FilePath'][i] = method['FilePath'][i].replace('..\\', '')
+    method['FilePath'] = method['FilePath'].apply(myReplace)
     
     method['DeclNbr,ExprStmtNbr'] = method['Content'].apply(compute_DeclNbr_ExprStmtNbr)
     method[['DeclNbr','ExprStmtNbr']] = method['DeclNbr,ExprStmtNbr'].str.split(',', expand=True)
@@ -143,7 +145,7 @@ def readMethod(file):
 
 def match(cs_file, pmd_file, method_file, merged_file):
     df_cs, df_pmd, df_method = readCS(cs_file), readPMD(pmd_file), readMethod(method_file)
-    df_metrics = pd.concat([df_cs, df_pmd], ignore_index=True)
+    df_metrics = pd.concat([df_cs, df_pmd], ignore_index=True).reset_index(drop=True)
 
     dummies = pd.get_dummies(df_metrics['Rule'])
     counts = dummies.sum() # count for each column
@@ -154,25 +156,45 @@ def match(cs_file, pmd_file, method_file, merged_file):
     missing_rules = list(set(total_rules) - set(counts.index))
     for missing_rule in missing_rules:
         df_metrics[missing_rule] = 0
-    
-    merged = pd.merge(df_method, df_metrics, on=['FilePath'], how='inner')
 
+    merged = pd.merge(df_method, df_metrics, on=['FilePath'], how='inner')
     merged = merged[(merged['LineNum'].between(merged['StartLine'], merged['EndLine']))]
     
     merged.reset_index(drop=True, inplace=True)
-    merged.drop('LineNum', axis=1, inplace=True)
     
-    merged = merged.groupby(method_info).sum().reset_index()  
+    merged = merged.groupby(method_info).sum().reset_index()
+
+    df_method['TMP'] = df_method['FilePath'] + df_method['StartLine'].astype(str) + df_method['EndLine'].astype(str)
+    merged['TMP'] = merged['FilePath'] + merged['StartLine'].astype(str) + merged['EndLine'].astype(str)
+    idx = ~(df_method['TMP'].isin(merged['TMP']))
+    merged = pd.concat([merged, df_method[idx]], ignore_index=True).reset_index(drop=True)
+    merged.fillna(0, inplace=True)
+    
+    merged['TMP'] = pd.Categorical(merged['TMP'], categories=df_method['TMP'], ordered=True)
+    merged = merged.sort_values('TMP').reset_index(drop=True)
+    merged['TMP'] = merged['TMP'].astype(str)
+
+    merged.drop(['LineNum', 'TMP'], axis=1, inplace=True)
+
     merged.to_csv(merged_file, index=False)
 
-t = time.time()
+times = []
 for project in projects:
+    t = time.time()
     cs_file = f'csResults/{project}_cs.csv'
     pmd_file = f'pmdResults/{project}_pmd.csv'
     method_file = f'../code snippets-with-labels&metrics/method/{project}_methodLevel.csv'
     merged_file = f'MatchResults/{project}_Matched.csv'
     os.makedirs('MatchResults', exist_ok=True)
     match(cs_file, pmd_file, method_file, merged_file)
+    times.append(time.time() - t)
     print(project, 'done.')
 
-print('cost time:', time.time()-t)
+with open('results/time2.txt', 'w') as f:
+    for t, project in zip(times, project_names):
+        f.write("{}\t{:.2f}\n".format(project, t))
+    f.write("Median\t{:.2f}\n".format(np.median(times)))
+    f.write("Total\t{:.2f}\n".format(np.sum(times)))
+
+
+print('cost time:', sum(times))
