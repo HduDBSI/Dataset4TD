@@ -33,9 +33,9 @@ def CommentToCodeObject_slow(CodeObjectFile, CommentFile, CodeObjectFileLabeled,
     def list_stringify(lst):
         return [str(item) for item in lst]
     
-    def process_column(columnName):
+    def process_column(columnName, labelName):
         codeSnippet_commentLabel = makeEmptyList(CodeObject[columnName].tolist())
-        codeSnippet_commentLabel = fillLabel(Comment[columnName+level.capitalize()].tolist(), Comment['label'].tolist(), codeSnippet_commentLabel)
+        codeSnippet_commentLabel = fillLabel(Comment[columnName+level.capitalize()].tolist(), Comment[labelName].tolist(), codeSnippet_commentLabel)
         codeSnippetLabel = []
         for i in range(len(codeSnippet_commentLabel)):
             if sum(codeSnippet_commentLabel[i]) > 0:
@@ -46,9 +46,15 @@ def CommentToCodeObject_slow(CodeObjectFile, CommentFile, CodeObjectFileLabeled,
 
     columns = ["CommentFor", "CommentsIn", "CommentsAssociated"]
     for column in columns:
-        codeSnippetLabel, codeSnippet_commentLabel = process_column(column)
+        codeSnippetLabel, codeSnippet_commentLabel = process_column(column, 'label')
         CodeObject['eachLabel'+column] = codeSnippet_commentLabel
         CodeObject[column+'Label'] = codeSnippetLabel
+
+    PseudoLabel_columns = ["MAT", "GGSATD", 'XGBoost']
+    for column in PseudoLabel_columns:
+        codeSnippetLabel, codeSnippet_commentLabel = process_column("CommentsAssociated", column.lower())
+        # CodeObject['eachPseudoLabelForCASFrom'+column] = codeSnippet_commentLabel
+        CodeObject['PseudoLabelForCASFrom'+column] = codeSnippetLabel
 
     # CodeObject.drop(['Content', 'CommentFor', 'CommentsIn', 'CommentsAssociated'], axis=1, inplace=True)
     CodeObject.to_csv(CodeObjectFileLabeled, index=False, encoding=encoding)
