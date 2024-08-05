@@ -10,9 +10,9 @@ FastJSON &\enspace1,051& \;\enspace\enspace54 &\enspace5.14\%&\enspace1,118& \;\
 \hline
 Flink &13,075& \;\enspace850 &\enspace6.50\%&16,473& \;\enspace924 &\enspace5.61\%&\enspace28,092& \;\enspace841 &\enspace2.99\%&\enspace22,053& \;\enspace430 &\enspace1.95\%\\
 \hline
-Guava &\enspace1,498& \;\enspace458 &30.57\%&\enspace2,316& \;\enspace540 &23.32\%&\enspace\enspace8,347& \;\enspace800 &\enspace9.58\%&\enspace\enspace8,262& \;\enspace560 &\enspace6.78\%\\
+Guava &\enspace1,498& \;\enspace458 &30.57\%&\enspace2,313& \;\enspace537 &23.22\%&\enspace\enspace8,344& \;\enspace796 &\enspace9.54\%&\enspace\enspace8,262& \;\enspace560 &\enspace6.78\%\\
 \hline
-Jenkins &\enspace1,624& \;\enspace483 &29.74\%&\enspace2,142& \;\enspace582 &27.17\%&\enspace\enspace6,638& \;\enspace885 &13.33\%&\enspace\enspace4,354& \;\enspace335 &\enspace7.69\%\\
+Jenkins &\enspace1,624& \;\enspace483 &29.74\%&\enspace2,142& \;\enspace582 &27.17\%&\enspace\enspace6,637& \;\enspace885 &13.33\%&\enspace\enspace4,354& \;\enspace335 &\enspace7.69\%\\
 \hline
 LibGDX &\enspace2,198& \;\enspace139 &\enspace6.32\%&\enspace2,143& \;\enspace144 &\enspace6.72\%&\enspace\enspace7,282& \;\enspace222 &\enspace3.05\%&\enspace\enspace2,860& \;\enspace134 &\enspace4.69\%\\
 \hline
@@ -34,5 +34,5 @@ RxJava &\enspace1,857& \;\enspace\enspace82 &\enspace4.42\%&\enspace1,162& \;\en
 \hline
 Tink &\enspace\enspace631& \;\enspace127 &20.13\%&\enspace\enspace737& \;\enspace134 &18.18\%&\enspace\enspace2,038& \;\enspace158 &\enspace7.75\%&\enspace\enspace1,769& \;\enspace\enspace34 &\enspace1.92\%\\
 \hline
-\textbf{Total} &62,345& 5,412 &\enspace8.68\%&57,500& 6,083 &10.58\%&133,938& 7,032 &\enspace5.25\%&111,156& 4,479 &\enspace4.03\%\\
+\textbf{Total} &62,345& 5,412 &\enspace8.68\%&57,497& 6,080 &10.57\%&133,934& 7,028 &\enspace5.25\%&111,156& 4,479 &\enspace4.03\%\\
 \hline

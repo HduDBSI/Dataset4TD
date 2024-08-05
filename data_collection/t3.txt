@@ -1,0 +1,38 @@
+ANTLR4 & \;\enspace\enspace518 &\enspace\enspace507&97.88\%& \;\enspace\enspace61 &12.03\%& \;\enspace\enspace\enspace585 &\enspace\enspace428&73.16\%& \;\enspace\enspace63 &14.72\%& \enspace\enspace3,705 &\enspace1,283&34.63\%& \;\enspace\enspace52 &\enspace4.05\%& \;\enspace\enspace11,908 &\enspace1,122&\enspace9.42\%& \;\enspace\enspace27 &\enspace2.41\%\\
+\hline
+DBeaver & \enspace4,742 &\enspace4,726&99.66\%& \;\enspace236 &\enspace4.99\%& \enspace\enspace5,565 &\enspace3,999&71.86\%& \;\enspace250 &\enspace6.25\%& \enspace36,469 &\enspace5,565&15.26\%& \;\enspace265 &\enspace4.76\%& \;\enspace\enspace73,292 &\enspace5,042&\enspace6.88\%& \;\enspace213 &\enspace4.22\%\\
+\hline
+Elasticsearch & 14,234 &14,066&98.82\%& 1,073 &\enspace7.63\%& \enspace18,995 &10,825&56.99\%& 1,209 &11.17\%& 114,135 &27,447&24.05\%& 1,066 &\enspace3.88\%& \;\enspace403,576 &22,336&\enspace5.53\%& \;\enspace808 &\enspace3.62\%\\
+\hline
+ExoPlayer & \enspace1,493 &\enspace1,399&93.70\%& \;\enspace263 &18.80\%& \enspace\enspace2,355 &\enspace2,158&91.63\%& \;\enspace348 &16.13\%& \enspace18,496 &10,562&57.10\%& \;\enspace628 &\enspace5.95\%& \;\enspace\enspace65,972 &10,897&16.52\%& \;\enspace314 &\enspace2.88\%\\
+\hline
+FastJSON & \enspace3,121 &\enspace1,051&33.68\%& \;\enspace\enspace54 &\enspace5.14\%& \enspace\enspace5,685 &\enspace1,118&19.67\%& \;\enspace\enspace64 &\enspace5.72\%& \enspace20,187 &\enspace1,287&\enspace6.38\%& \;\enspace106 &\enspace8.24\%& \;\enspace\enspace49,950 &\enspace1,327&\enspace2.66\%& \;\enspace\enspace39 &\enspace2.94\%\\
+\hline
+Flink & 13,198 &13,075&99.07\%& \;\enspace850 &\enspace6.50\%& \enspace20,363 &16,473&80.90\%& \;\enspace924 &\enspace5.61\%& 100,994 &28,092&27.82\%& \;\enspace841 &\enspace2.99\%& \;\enspace284,028 &22,053&\enspace7.76\%& \;\enspace430 &\enspace1.95\%\\
+\hline
+Guava & \enspace3,039 &\enspace1,498&49.29\%& \;\enspace458 &30.57\%& \enspace\enspace6,850 &\enspace2,313&33.77\%& \;\enspace537 &23.22\%& \enspace49,181 &\enspace8,344&16.97\%& \;\enspace796 &\enspace9.54\%& \;\enspace131,166 &\enspace8,262&\enspace6.30\%& \;\enspace560 &\enspace6.78\%\\
+\hline
+Jenkins & \enspace1,716 &\enspace1,624&94.64\%& \;\enspace483 &29.74\%& \enspace\enspace3,299 &\enspace2,142&64.93\%& \;\enspace582 &27.17\%& \enspace15,361 &\enspace6,637&43.21\%& \;\enspace885 &13.33\%& \;\enspace\enspace46,292 &\enspace4,354&\enspace9.41\%& \;\enspace335 &\enspace7.69\%\\
+\hline
+LibGDX & \enspace2,317 &\enspace2,198&94.86\%& \;\enspace139 &\enspace6.32\%& \enspace\enspace3,033 &\enspace2,143&70.66\%& \;\enspace144 &\enspace6.72\%& \enspace41,115 &\enspace7,282&17.71\%& \;\enspace222 &\enspace3.05\%& \;\enspace\enspace73,596 &\enspace2,860&\enspace3.89\%& \;\enspace134 &\enspace4.69\%\\
+\hline
+Logstash & \;\enspace\enspace523 &\enspace\enspace505&96.56\%& \;\enspace\enspace38 &\enspace7.52\%& \;\enspace\enspace\enspace681 &\enspace\enspace446&65.49\%& \;\enspace\enspace47 &10.54\%& \enspace\enspace3,575 &\enspace\enspace809&22.63\%& \;\enspace\enspace43 &\enspace5.32\%& \;\enspace\enspace\enspace9,534 &\enspace\enspace566&\enspace5.94\%& \;\enspace\enspace23 &\enspace4.06\%\\
+\hline
+Mockito & \;\enspace\enspace957 &\enspace\enspace897&93.73\%& \;\enspace\enspace85 &\enspace9.48\%& \enspace\enspace1,682 &\enspace\enspace656&39.00\%& \;\enspace\enspace89 &13.57\%& \enspace\enspace5,728 &\enspace1,632&28.49\%& \;\enspace\enspace87 &\enspace5.33\%& \;\enspace\enspace13,054 &\enspace1,816&13.91\%& \;\enspace\enspace69 &\enspace3.80\%\\
+\hline
+OpenRefine & \enspace1,031 &\enspace\enspace935&90.69\%& \;\enspace112 &11.98\%& \enspace\enspace1,207 &\enspace\enspace554&45.90\%& \;\enspace117 &21.12\%& \enspace\enspace5,261 &\enspace1,328&25.24\%& \;\enspace128 &\enspace9.64\%& \;\enspace\enspace16,294 &\enspace1,081&\enspace6.63\%& \;\enspace\enspace97 &\enspace8.97\%\\
+\hline
+Presto & \enspace7,964 &\enspace7,877&98.91\%& \;\enspace600 &\enspace7.62\%& \enspace10,014 &\enspace3,675&36.70\%& \;\enspace683 &18.59\%& \enspace67,558 &\enspace8,423&12.47\%& \;\enspace763 &\enspace9.06\%& \;\enspace187,289 &12,178&\enspace6.50\%& \;\enspace641 &\enspace5.26\%\\
+\hline
+Quarkus & 13,052 &\enspace5,668&43.43\%& \;\enspace642 &11.33\%& \enspace17,114 &\enspace6,412&37.47\%& \;\enspace687 &10.71\%& \enspace59,449 &11,355&19.10\%& \;\enspace676 &\enspace5.95\%& \;\enspace132,744 &\enspace8,580&\enspace6.46\%& \;\enspace501 &\enspace5.84\%\\
+\hline
+QuestDB & \enspace2,537 &\enspace2,453&96.69\%& \;\enspace\enspace73 &\enspace2.98\%& \enspace\enspace3,492 &\enspace1,036&29.67\%& \;\enspace\enspace80 &\enspace7.72\%& \enspace30,736 &\enspace3,202&10.42\%& \;\enspace103 &\enspace3.22\%& \;\enspace\enspace61,911 &\enspace4,162&\enspace6.72\%& \;\enspace101 &\enspace2.43\%\\
+\hline
+Redisson & \enspace2,151 &\enspace1,378&64.06\%& \;\enspace\enspace36 &\enspace2.61\%& \enspace\enspace2,424 &\enspace1,220&50.33\%& \;\enspace\enspace35 &\enspace2.87\%& \enspace24,849 &\enspace4,790&19.28\%& \;\enspace\enspace61 &\enspace1.27\%& \;\enspace\enspace59,711 &\enspace\enspace589&\enspace0.99\%& \;\enspace\enspace65 &11.04\%\\
+\hline
+RxJava & \enspace1,883 &\enspace1,857&98.62\%& \;\enspace\enspace82 &\enspace4.42\%& \enspace\enspace3,008 &\enspace1,162&38.63\%& \;\enspace\enspace87 &\enspace7.49\%& \enspace22,116 &\enspace3,858&17.44\%& \;\enspace148 &\enspace3.84\%& \;\enspace\enspace72,073 &\enspace2,162&\enspace3.00\%& \;\enspace\enspace88 &\enspace4.07\%\\
+\hline
+Tink & \;\enspace\enspace634 &\enspace\enspace631&99.53\%& \;\enspace127 &20.13\%& \;\enspace\enspace\enspace853 &\enspace\enspace737&86.40\%& \;\enspace134 &18.18\%& \enspace\enspace5,226 &\enspace2,038&39.00\%& \;\enspace158 &\enspace7.75\%& \;\enspace\enspace20,943 &\enspace1,769&\enspace8.45\%& \;\enspace\enspace34 &\enspace1.92\%\\
+\hline
+\textbf{Total} & 75,110 &62,345&83.00\%& 5,412 &\enspace8.68\%& 107,205 &57,497&53.63\%& 6,080 &10.57\%& 624,141 &133,934&21.46\%& 7,028 &\enspace5.25\%& 1,713,333 &111,156&\enspace6.49\%& 4,479 &\enspace4.03\%\\
+\hline
