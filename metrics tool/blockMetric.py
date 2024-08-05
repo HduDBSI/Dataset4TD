@@ -2,8 +2,9 @@ from javalang import parse, tree
 import sys
 import time
 import copy
+import numpy as np
 sys.path.append("../") 
-from project_Info import projects, granularities
+from project_Info import projects, granularities, project_names
 import pandas as pd
 node_types = [
     tree.Annotation,                    # An annotation node in the AST.
@@ -148,9 +149,10 @@ def compute_metrics(code_snippet: str):
     return this_metric_num, list(this_metric_num.values()), Isparsed
 
 def main():
-    t = time.time()
-
+    
+    times = []
     for project in projects:
+        t = time.time()
         sourceFile = '../code snippets-without-labels/block/'+project+'_blockLevel.csv'
         targetFile = '../metrics/'+project+'-block.csv'
         df = pd.read_csv(sourceFile)
@@ -172,8 +174,12 @@ def main():
         df.drop({'Content'}, axis=1, inplace=True)
         df.to_csv(targetFile, index=False)
         print(project, 'parse errors:', len(remove))
-
-    print('time:', time.time()-t)
+        times.append(time.time() - t)
+    with open('time-javalang.txt', 'w') as f:
+        for t, project in zip(times, project_names):
+            f.write("{}\t{:.2f}\n".format(project, t))
+        f.write("Median\t{:.2f}\n".format(np.median(times)))
+        f.write("Total\t{:.2f}\n".format(np.sum(times)))
 
 if __name__ == '__main__':
     main()
