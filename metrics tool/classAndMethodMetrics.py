@@ -1,14 +1,14 @@
 import sys
 import os
 import numpy as np
-sys.path.append("../../") 
+sys.path.append("../") 
 from project_Info import projects, project_names
 import time
 
 def extractMetrics(project):
-    srcfile = '..\\..\\projects\\' + project
+    srcfile = '..\\projects\\' + project
     jdk = 'jdk11\\bin\\java.exe'
-    outfile = '..\\..\\metrics\\' + project + '-'
+    outfile = '..\\metrics\\' + project + '-'
     jar = 'ck.jar'
     parameters = 'True 0 False'
     cmd = [jdk, '-jar', jar, srcfile, parameters, outfile]
