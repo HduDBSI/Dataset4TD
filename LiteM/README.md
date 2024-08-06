@@ -1,17 +1,14 @@
 # LiteM
 ## RQ2: Effectiveness of Data Augmentation
-0. Run [within_project-SMOTE.py](within_project-SMOTE.py), and the results can be found in [results/within_project_SMOTE.txt](results/within_project_SMOTE.txt).
-1. Run [within_project-ASMOTE.py](within_project-ASMOTE.py), and the results can be found in [results/within_project.txt](results/within_project.txt).
-2. Run [within_project-NoSMOTE.py](within_project-NoSMOTE.py), and the results can be found in [results/within_project_NoSMOTE.txt](results/within_project_NoSMOTE.txt).
-3. Run [within_project-ADASYN.py](within_project-ADASYN.py), and the results can be found in [results/within_project_ADASYN.txt](results/within_project_ADASYN.txt).
-4. Run [ablation-table.py](ablation-table.py), and the results of four augmentation techniques can be found in [results/ablation.txt](results/ablation.txt).
+0. In [within_project.py](within_project.py), set the argument `classifier` as `LightGBM` and modify the argument `technique`.
+1. Run [RQ2.py](RQ2.py), and the results of four augmentation techniques can be found in [results/RQ2.txt](results/RQ2.txt).
 
-## RQ3: TDU Detection
-0. Run [within_project-ASMOTE.py](within_project-ASMOTE.py), and the results of LiteM can be found in [results/within_project.txt](results/within_project.txt).
-1. Run [baseline.py](baseline.py), and the results of DT can be found in [results/baseline.txt](results/baseline.txt).
-2. GO to [../TEDIOUS](../TEDIOUS), and the results of TEDIOUS will be found in [../TEDIOUS/within_project.txt](../TEDIOUS/within_project.txt).
-3. GO to [../SATDID](../SATDID), and the results of SATDID will be found in [../SATDID/within_project.txt](../SATDID/within_project.txt).
-4. Run [baselines-tables.py](baselines-tables.py), and the results of four approaches can be found in [results/comparison.txt](results/comparison.txt).
+## RQ3: TDWA Detection
+0. Run [within_project.py](within_project.py), with the argument `classifier` as `LightGBM` and the argument `technique` as `ASMOTE`.
+1. Run [within_project.py](within_project.py), with the argument `classifier` as `DecisionTree` and the argument `technique` as `ASMOTE`.
+2. GO to [../TEDIOUS](../TEDIOUS), and the results of TEDIOUS will be found in [../TEDIOUS/results/within_project.txt](../TEDIOUS/results/within_project.txt).
+3. GO to [../SATDID](../SATDID), and the results of SATDID will be found in [../SATDID/results/within_project.txt](../SATDID/results/within_project.txt).
+4. Run [RQ3.py](RQ3.py), and the results of four approaches can be found in [results/RQ3.txt](results/RQ3.txt).
 
 ## RQ4: Explainability of Model
 0. Run [within_project-ASMOTE.py](within_project-ASMOTE.py), and the results can be found in [results/importance.mat](results/importance.mat).
