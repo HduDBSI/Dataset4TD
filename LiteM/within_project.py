@@ -112,7 +112,7 @@ def ten_folds(file_name, level, k_fold=10):
     mean_precision = sum(precisions) / k_fold
     mean_recall = sum(recalls) / k_fold
     mean_f1_score = sum(f1_scores) / k_fold
-    mean_cost_time = (time.time() - start_time) / k_fold
+    cost_time = time.time() - start_time
     mean_auc = sum(AUCs) / k_fold
     mean_mcc = sum(MCCs) / k_fold
     mean_feature_importances = np.mean(np.array(feature_importances), axis=0)
@@ -124,9 +124,9 @@ def ten_folds(file_name, level, k_fold=10):
     print("Mean F1-score:{:.2f}".format(mean_f1_score))
     print("Mean AUC: {:.2f}".format(mean_auc))
     print("Mean MCC: {:.2f}".format(mean_mcc))
-    print("Mean Cost Time: {:.2f} seconds".format(mean_cost_time))
+    print("Cost Time: {:.2f} seconds".format(cost_time))
 
-    return mean_precision, mean_recall, mean_f1_score, mean_cost_time, mean_feature_importances, mean_auc, mean_mcc
+    return mean_precision, mean_recall, mean_f1_score, cost_time, mean_feature_importances, mean_auc, mean_mcc
 
 def normalize_list(lst):
     min_value = min(lst)
@@ -162,13 +162,13 @@ matrix = insertColumn(matrix, project_names, 0)
 writeTable(matrix, f'results/within_project_{args.technique}_{args.classifier}.txt')
 
 with open(f'results/time_{args.technique}_{args.classifier}.txt', 'w') as f:
-    for index, granularity in enumerate(granularities):
-        time_mean = np.mean(times[index::4])
-        time_mdian = np.median(times[index::4])
-        time_total = np.sum(times[index::4])
-        print(granularity + '-average', time_mean)
-        print(granularity + '-median', time_mdian)
-        f.write("{:.2f} {:.2f}\n".format(time_mdian, time_total))
+    for idx, item in enumerate(granularities):
+        f.write(f"====={item}=====\n")
+        tmp = times[idx*18:(idx+1)*18]
+        for ttt in tmp:
+            f.write("{:.2f}\n".format(ttt))
+        f.write("{:.2f}\n".format(np.median(tmp)))
+        f.write("{:.2f}\n".format(np.sum(tmp)))
 
 sio.savemat(f'results/importance_{args.technique}_{args.classifier}.mat', {
     'data': importances,
