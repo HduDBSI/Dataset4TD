@@ -14,15 +14,15 @@
 0. Run [within_project.py](within_project.py), with the argument `classifier` as `LightGBM` and the argument `technique` as `ASMOTE`. The results can be found in [results/importance_ASMOTE_LightGBM.mat](results/importance_ASMOTE_LightGBM.mat).
 
 # LiteMC
-0. Run [LiteMC.py](LiteMC.py), with the variable `pseudo` as `PseudoLabelForCASFromMAT`, `PseudoLabelForCASFromXGBoost` and `PseudoLabelForCASFromGGSATD`.
+0. Run [LiteMC.py](LiteMC.py), with the variable `pseudo` as  `PseudoLabelForCASFromMAT+`, `PseudoLabelForCASFromMAT`, `PseudoLabelForCASFromXGBoost` and `PseudoLabelForCASFromGGSATD`.
 1. Run [Table4LiteMC.py](Table4LiteMC.py)
 
 ## Why Not Total Ten Fold
 0. Run [total_ten_fold.py](total_ten_fold.py), and the results of LiteM can be found in [results/total_ten_fold.txt](results/total_ten_fold.txt).
-1. GO to [../TEDIOUS](../TEDIOUS), and the results of TEDIOUS will be found in [../TEDIOUS/total_ten_fold.txt](../TEDIOUS/total_ten_fold.txt).
-2. GO to [../SATDID](../SATDID), and the results of SATDID will be found in [../SATDID/total_ten_fold.txt](../SATDID/total_ten_fold.txt).
+1. GO to [../TEDIOUS](../TEDIOUS), and the results of TEDIOUS will be found in [/TEDIOUS/results/total_ten_fold.txt](/TEDIOUS/results/total_ten_fold.txt).
+2. GO to [../SATDID](../SATDID), and the results of SATDID will be found in [/SATDID/results/total_ten_fold.txt](/SATDID/results/total_ten_fold.txt).
 
 ## Why Not Cross Project
 0. Run [cross_project.py](cross_project.py), and the results of LiteM can be found in [results/cross_project.txt](results/cross_project.txt).
-1. GO to [../TEDIOUS](../TEDIOUS), and the results of TEDIOUS will be found in [../TEDIOUS/cross_project.txt](../TEDIOUS/cross_project.txt).
-2. GO to [../SATDID](../SATDID), and the results of SATDID will be found in [../SATDID/cross_project.txt](../SATDID/cross_project.txt).
+1. GO to [../TEDIOUS](../TEDIOUS), and the results of TEDIOUS will be found in [/TEDIOUS/cross_project.txt](/TEDIOUS/results/cross_project.txt).
+2. GO to [../SATDID](../SATDID), and the results of SATDID will be found in [/SATDID/cross_project.txt](/SATDID/results/cross_project.txt).
