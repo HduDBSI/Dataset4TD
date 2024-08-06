@@ -109,7 +109,7 @@ def k_folds_train(project, k_fold=10):
     mean_precision = sum(precisions) / k_fold
     mean_recall = sum(recalls) / k_fold
     mean_f1_score = sum(f1_scores) / k_fold
-    mean_cost_time = (time.time()-start_time) / k_fold
+    cost_time = time.time()-start_time
     mean_auc = sum(AUCs) / k_fold
     mean_mcc = sum(MCCs) / k_fold
 
@@ -119,9 +119,9 @@ def k_folds_train(project, k_fold=10):
     print("Mean F1-score:{:.2f}".format(mean_f1_score))
     print("Mean AUC: {:.2f}".format(mean_auc))
     print("Mean MCC: {:.2f}".format(mean_mcc))
-    print("Mean Cost Time: {:.2f} seconds".format(mean_cost_time))
+    print("Cost Time: {:.2f} seconds".format(cost_time))
 
-    return mean_precision, mean_recall, mean_f1_score, mean_cost_time, mean_auc, mean_mcc
+    return mean_precision, mean_recall, mean_f1_score, cost_time, mean_auc, mean_mcc
 
 latex_matrix = []
 times = []
@@ -141,3 +141,4 @@ with open(f'results/time3.txt', 'w') as f:
     for t, project in zip(times, project_names):
         f.write("{}\t{:.2f}\n".format(project, t))
     f.write("Median\t{:.2f}\n".format(np.median(times)))
+    f.write("Total\t{:.2f}\n".format(np.sum(times)))
