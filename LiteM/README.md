@@ -11,10 +11,11 @@
 4. Run [RQ3.py](RQ3.py), and the results of four approaches can be found in [results/RQ3.txt](results/RQ3.txt).
 
 ## RQ4: Explainability of Model
-0. Run [within_project-ASMOTE.py](within_project-ASMOTE.py), and the results can be found in [results/importance.mat](results/importance.mat).
+0. Run [within_project.py](within_project.py), with the argument `classifier` as `LightGBM` and the argument `technique` as `ASMOTE`. The results can be found in [results/importance_ASMOTE_LightGBM.mat](results/importance_ASMOTE_LightGBM.mat).
 
 # LiteMC
-Run [LiteMC.py](LiteMC.py), and the results can be found in [results/real.txt](results/real.txt).
+0. Run [LiteMC.py](LiteMC.py), with the variable `pseudo` as `PseudoLabelForCASFromMAT`, `PseudoLabelForCASFromXGBoost` and `PseudoLabelForCASFromGGSATD`.
+1. Run [Table4LiteMC.py](Table4LiteMC.py)
 
 ## Why Not Total Ten Fold
 0. Run [total_ten_fold.py](total_ten_fold.py), and the results of LiteM can be found in [results/total_ten_fold.txt](results/total_ten_fold.txt).
