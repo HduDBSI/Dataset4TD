@@ -60,6 +60,6 @@ Move these compressed packages to the **/projects** directory and unzip them to 
   - [rxjava-3.1.5](/projects/rxjava-3.1.5)
   - [tink-1.7.0](/projects/tink-1.7.0)
 
-
+For more details about the exclusion and inclusion, see projects.xlsx.
 
 
