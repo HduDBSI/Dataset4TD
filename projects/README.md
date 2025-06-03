@@ -3,11 +3,13 @@ Run [mkdirs.py](mkdirs.py) to make directories [/code snippets-without-labels](/
 # Project Information
 We find projects in this [url](https://github.com/topics/java?l=java&o=desc&s=stars) and the selected projects should meet these conditions:
 
-1. A software with continuous maintanance
-2. Last version release is within one year
-3. Commits exceeds 2000
-4. Commented by English
-5. Contirbutors exceeds 100
+1. The project should be a software
+2. The last version release should be within one year
+3. The project should be commented by English
+4. The number of commits should exceed 2,000
+5. The number of contirbutors should exceed 100
+6. The number of average commits should exceed 20
+7. The number of comments containing the TODO tag should exceed 20
 
 We show the details in the table below.
 |project| version |released date| decription |stars |contributors |commits|
